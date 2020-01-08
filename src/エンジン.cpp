@@ -28,7 +28,7 @@ using namespace エンジン;
 int ゲームエンジン::初期化()
 {
 	ChangeWindowMode(TRUE);//非全画面にセット
-	SetGraphMode(540, 960, 32);
+	SetGraphMode(1080, 960, 32);
 	if (DxLib_Init() == -1) { return -1; }	// DXライブラリ初期化(エラーで終了)
 
 	レンダリングサービス_->初期化();
@@ -70,6 +70,8 @@ int ゲームエンジン::更新()
 	// 描画
 	ClearDrawScreen();//裏画面消す
 	SetDrawScreen(DX_SCREEN_BACK);//描画先を裏画面に
+	LoadGraphScreen(0, 0, _T("img\\mat04-05.png"), TRUE);
+
 	エンティティサービス_->描画();
 	弾丸サービス_->描画();
 	ScreenFlip();//裏画面を表画面にコピー
